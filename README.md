@@ -1,6 +1,6 @@
 Requires Java 8.  
 
-## INSTALL
+### Build and run
 
 ```
 mvn clean install
