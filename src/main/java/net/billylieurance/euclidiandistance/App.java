@@ -28,6 +28,13 @@ public class App {
         elapsed = stop - start;
         System.out.println("  " + result.toString() + " in " + elapsed.toString() + " milliseconds");
         
+        System.out.println("Naive implementation with primitive data types x" + iterations.toString() + " gives");
+        start = System.currentTimeMillis();
+        result = naivePrimitive();
+        stop = System.currentTimeMillis();
+        elapsed = stop - start;
+        System.out.println("  " + result.toString() + " in " + elapsed.toString() + " milliseconds");
+        
         System.out.println("Java8 map-reduce implementation x" + iterations.toString() + " gives");
         start = System.currentTimeMillis();
         result = java8();
@@ -52,6 +59,21 @@ public class App {
             for (int i = 0; i < BunchOfMultiDimensionalPoints.dimensions; i++) {
                 Integer t1 = BunchOfMultiDimensionalPoints.trait1[i];
                 Integer t2 = BunchOfMultiDimensionalPoints.trait2[i];
+                running += (t1 - t2) * (t1 - t2);
+            }
+            result = Math.sqrt(running);
+        }
+        //System.out.println("  Running is " + running.toString());
+        return result;
+    }
+    
+    public static Double naivePrimitive(){
+        Double result  = 0d;
+        for (int j = 0; j < iterations; j++) {
+            int running = 0;
+            for (int i = 0; i < BunchOfMultiDimensionalPoints.dimensions; i++) {
+                int t1 = BunchOfMultiDimensionalPoints.primitiveTrait1[i];
+                int t2 = BunchOfMultiDimensionalPoints.primitiveTrait2[i];
                 running += (t1 - t2) * (t1 - t2);
             }
             result = Math.sqrt(running);
