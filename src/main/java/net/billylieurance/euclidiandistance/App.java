@@ -74,7 +74,8 @@ public class App {
             for (int i = 0; i < BunchOfMultiDimensionalPoints.dimensions; i++) {
                 int t1 = BunchOfMultiDimensionalPoints.primitiveTrait1[i];
                 int t2 = BunchOfMultiDimensionalPoints.primitiveTrait2[i];
-                running += (t1 - t2) * (t1 - t2);
+                //running += (t1 - t2) * (t1 - t2);
+                running += (t1 - t2)*(t1 - t2);
             }
             result = Math.sqrt(running);
         }
@@ -83,9 +84,11 @@ public class App {
     }
     
     public static Double java8(){
+       Double result  = 0d;
        BunchOfMultiDimensionalPoints bomdp = new BunchOfMultiDimensionalPoints();
-        Double result  = Math.sqrt(bomdp.listOfTuples.stream().mapToInt((squareable) -> (squareable[0] - squareable[1]) * (squareable[0] - squareable[1])).sum());
-        
+       for (int j = 0; j < iterations; j++) {
+         result  = Math.sqrt(bomdp.listOfTuples.stream().mapToInt((squareable) -> (squareable[0] - squareable[1]) * (squareable[0] - squareable[1])).sum());
+       }
         //System.out.println("  Running is " + running.toString());
         return result;
     }
